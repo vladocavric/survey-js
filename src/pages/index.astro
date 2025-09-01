@@ -1,5 +1,6 @@
 ---
-
+import FormBuilder from "../components/form-builder";
+import '../styles/global.css';
 ---
 
 <html lang="en">
@@ -8,9 +9,25 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Survey Creator</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<div class="container">
+			<h1>Survey Creator</h1>
+			<FormBuilder client:only="react" />
+		</div>
 	</body>
 </html>
+
+<style>
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 20px;
+	}
+
+	h1 {
+		text-align: center;
+		margin-bottom: 2rem;
+	}
+</style>
