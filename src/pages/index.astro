@@ -1,6 +1,50 @@
 ---
-import FormBuilder from "../components/form-builder";
+import { FormBuilder } from "../components/form-builder";
 import '../styles/global.css';
+import type { FormData } from "../components/types";
+
+const initialData: FormData = {
+	title: 'Example Survey',
+	description: 'This is a sample form loaded via initialData.',
+	elements: [
+		{
+			type: 'question',
+			element: {
+				name: 'name',
+				type: 'text',
+				title: 'What is your name?',
+				description: 'Please enter your full name',
+				isRequired: true,
+				readOnly: false,
+				visible: true,
+				showTitleAndDescription: true,
+				validators: [
+					{ type: 'text', text: 'Name should be between 2 and 50 characters', minLength: 2, maxLength: 50 },
+				],
+				visibleIf: '',
+			},
+		},
+		{
+			type: 'question',
+			element: {
+				name: 'age',
+				type: 'number',
+				title: 'What is your age?',
+				description: '',
+				isRequired: true,
+				readOnly: false,
+				visible: true,
+				showTitleAndDescription: true,
+				min: 18,
+				max: 100,
+				validators: [
+					{ type: 'numeric', text: 'Age must be between 18 and 100', minValue: 18, maxValue: 100 },
+				],
+				visibleIf: '',
+			},
+		},
+	],
+};
 ---
 
 <html lang="en">
@@ -13,21 +57,9 @@ import '../styles/global.css';
 	</head>
 	<body>
 		<div class="container">
-			<h1>Survey Creator</h1>
-			<FormBuilder client:only="react" />
+			<FormBuilder initialData={initialData} client:only="react" />
 		</div>
 	</body>
 </html>
 
-<style>
-	.container {
-		max-width: 1200px;
-		margin: 0 auto;
-		padding: 20px;
-	}
 
-	h1 {
-		text-align: center;
-		margin-bottom: 2rem;
-	}
-</style>
